@@ -2,6 +2,8 @@
 
 * [線上 Demo 網站](https://django-social-login-tutorial.herokuapp.com/account/login/?next=/account/)
 
+* [Youtube 教學](https://youtu.be/Rw1lZq_lOSA)
+
 大家一定常看到可以使用社交平台登入的網站，
 
 像是使用 [FACEBOOK](https://www.facebook.com/) ， [GITHUB](https://github.com/)，
@@ -69,7 +71,7 @@ def total_people():
     return User.objects.count()
 ```
 
-接著我們在 `dashboard.html` 裡填入下方程式碼 ( 完整程式碼請參考)
+接著我們在 `dashboard.html` 裡填入下方程式碼 ( 完整程式碼請參考 [dashboard.html](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/account/templates/account/dashboard.html) )
 
 ```html
 {% extends "base.html" %}
@@ -91,7 +93,7 @@ def total_people():
 
 ```
 
-重要的是 {% load account_tags %} 以及 {% total_people %}
+重要的是 ***{% load account_tags %}*** 以及 ***{% total_people %}***
 
 ***注意，當你加入新的 template tags ，請重新啟動你的 Django Server***
 
@@ -113,7 +115,7 @@ Django 提供三種方法來讓你建立自己的  template tags
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ```
 
-如果你想要真的寄出一封郵件，請修改成下方
+如果你想要真的寄出一封郵件，請修改 [settings.py](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/django_social_login_tutorial/settings.py)
 
 ```python
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -153,7 +155,7 @@ EMAIL_USE_TLS = True
 
 [https://accounts.google.com/b/0/DisplayUnlockCaptcha](https://accounts.google.com/b/0/DisplayUnlockCaptcha)
 
-授權存取您的 Google 帳戶，直接按繼續!!! 如下圖
+授權存取您的 Google 帳戶，直接按繼續，如下圖
 
 ![http://i.imgur.com/5ZIfPup.png](http://i.imgur.com/5ZIfPup.png)
 
@@ -161,7 +163,7 @@ EMAIL_USE_TLS = True
 
 我們版型套用 [bootstrap](http://getbootstrap.com/) 來完成，
 
-Django 在 render form 的時候，他有預設的 html 格式，不過有時候我們常常需要加入一些自己 class。
+Django 在 render form 的時候，他有預設的 html 格式，不過有時候我們常常需要加入一些自己的 class。
 
 我們有一個 form 如下
 
@@ -229,7 +231,7 @@ class UserRegistrationForm(forms.ModelForm):
 
 > pip install social-auth-app-django
 
-[settings.py]()
+ [settings.py](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/django_social_login_tutorial/settings.py)
 
 ```python
 INSTALLED_APPS = [
@@ -242,7 +244,7 @@ INSTALLED_APPS = [
 接著在你的命令提示字元 (cmd ) 底下輸入
 > python manage.py migrate
 
-[settings.py]()
+ [settings.py](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/django_social_login_tutorial/settings.py)
 
 ```python
 AUTHENTICATION_BACKENDS = (
@@ -257,7 +259,7 @@ AUTHENTICATION_BACKENDS = (
 
 設定 URLs
 
-[urls.py]()
+可參考本範例的 [urls.py](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/django_social_login_tutorial/urls.py)
 
 ```python
     urlpatterns = [
@@ -282,16 +284,14 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 這樣你就可以在本地端測試，
 
-最後請將你的 FACEBOOK KEY 以及  SECRET 貼到 [settings.py]()
+最後請將你的 FACEBOOK KEY 以及  SECRET 貼到  [settings.py](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/django_social_login_tutorial/settings.py)
 
 ```python
 SOCIAL_AUTH_FACEBOOK_KEY = 'XXX' # Facebook App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'XXX' # Facebook App Secret
 ```
 
-Templates 使用方法，可參考
-
-django_social_login_tutorial/account/templates/registration/login.html
+Templates 使用方法，可參考 [login.html](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/account/templates/registration/login.html)
 
 ```python
 <a href="{% url "social:begin" "facebook" %}" facebook</a>
@@ -303,11 +303,11 @@ django_social_login_tutorial/account/templates/registration/login.html
 
 本機測試設定如下
 
-[http://localhost:8000/social-auth/complete/github/](http://localhost:8000/social-auth/complete/github/)
+Authorization callback URL 請填入 [http://localhost:8000/social-auth/complete/github/](http://localhost:8000/social-auth/complete/github/)
 
 ![http://i.imgur.com/qdc963N.png](http://i.imgur.com/qdc963N.png)
 
-最後請將你的 GITHUB KEY 以及  SECRET 貼到 [settings.py]()
+最後請將你的 GITHUB KEY 以及  SECRET 貼到  [settings.py](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/django_social_login_tutorial/settings.py)
 
 ![http://i.imgur.com/vVZE3Nj.png](http://i.imgur.com/vVZE3Nj.png)
 
@@ -316,9 +316,7 @@ SOCIAL_AUTH_GITHUB_KEY = 'XXX' # GITHUB App ID
 SOCIAL_AUTH_GITHUB_SECRET = 'XXX' # GITHUB App Secret
 ```
 
-Templates 使用方法，可參考
-
-django_social_login_tutorial/account/templates/registration/login.html
+Templates 使用方法，可參考 [login.html](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/account/templates/registration/login.html)
 
 ```python
 <a href="{% url "social:begin" "github" %}" github</a>
@@ -328,16 +326,15 @@ django_social_login_tutorial/account/templates/registration/login.html
 
 請到 [https://console.developers.google.com/project](https://console.developers.google.com/project) 建立 app
 
-
-[http://localhost:8000/social-auth/complete/google-oauth2/](http://localhost:8000/social-auth/complete/google-oauth2/)
-
 ![http://i.imgur.com/160MZ9Y.png](http://i.imgur.com/160MZ9Y.png)
+
+授權導向 URI 請填入[http://localhost:8000/social-auth/complete/google-oauth2/](http://localhost:8000/social-auth/complete/google-oauth2/)
 
 ![http://i.imgur.com/ygpWl2C.png](http://i.imgur.com/ygpWl2C.png)
 
 ![http://i.imgur.com/zsq35jn.png](http://i.imgur.com/zsq35jn.png)
 
-最後請將你的 GOOGLE KEY 以及  SECRET 貼到 [settings.py]()
+最後請將你的 GOOGLE KEY 以及  SECRET 貼到  [settings.py](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/django_social_login_tutorial/settings.py)
 
 ```python
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '' # Google Consumer Key
@@ -348,9 +345,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' # Google Consumer Secret
 
 ![http://i.imgur.com/jR0l3Xw.png](http://i.imgur.com/jR0l3Xw.png)
 
-Templates 使用方法，可參考
-
-django_social_login_tutorial/account/templates/registration/login.html
+Templates 使用方法，可參考 [login.html](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/account/templates/registration/login.html)
 
 ```python
 <a href="{% url "social:begin" "google-oauth2" %}" google</a>
@@ -358,26 +353,22 @@ django_social_login_tutorial/account/templates/registration/login.html
 
 [TWITTER](https://twitter.com/?lang=zh-tw)
 
-Website：[http://localhost:8000/account/](http://localhost:8000/account/)
-
- Callback URL：[http://localhost:8000/social-auth/complete/twitter/](http://localhost:8000/social-auth/complete/twitter/)
-
 請到 [https://apps.twitter.com/app/new](https://apps.twitter.com/app/new) 建立 app ，
+
+ Callback URL 請填入 [http://localhost:8000/social-auth/complete/twitter/](http://localhost:8000/social-auth/complete/twitter/)
 
 ![](http://i.imgur.com/V3JeGul.png)
 
 ![](http://i.imgur.com/l5WgbUF.png)
 
-最後請將你的 TWITTER KEY 以及  SECRET 貼到 [settings.py]()
+最後請將你的 TWITTER KEY 以及  SECRET 貼到  [settings.py](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/django_social_login_tutorial/settings.py)
 
 ```python
 SOCIAL_AUTH_TWITTER_KEY  = 'XXX' # TWITTER App ID
 SOCIAL_AUTH_TWITTER_SECRET = 'XXX' # TWITTER App Secret
 ```
 
-Templates 使用方法，可參考
-
-django_social_login_tutorial/account/templates/registration/login.html
+Templates 使用方法，可參考 [login.html](https://github.com/twtrubiks/django_social_login_tutorial/blob/master/account/templates/registration/login.html)
 
 ```python
 <a href="{% url "social:begin" "twitter" %}" twitter</a>
